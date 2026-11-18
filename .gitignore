@@ -1,0 +1,10 @@
+*.d6
+*.cramfs
+firmimg*
+rootfs/
+newroot/
+*.key
+*.pem
+id_rsa*
+id_ed25519*
+authorized_keys_root

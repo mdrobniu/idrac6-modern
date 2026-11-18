@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iDRAC console</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0b0d10; color: #d8dde3; font: 14px/1.4 system-ui, sans-serif; }
+  header { display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+           padding: 8px 12px; background: #15191e; border-bottom: 1px solid #262c33; }
+  header .sp { flex: 1; }
+  button, select { background: #222a31; color: #d8dde3; border: 1px solid #39424b;
+           border-radius: 6px; padding: 6px 10px; font: inherit; cursor: pointer; }
+  button:hover, select:hover { background: #2b343d; }
+  button.on { background: #2563eb; border-color: #2563eb; color: #fff; }
+  #status { padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+  #status.ok { color: #6ee7a8; } #status.warn { color: #f5c451; } #status.err { color: #f08a8a; }
+  #wrap { display: flex; justify-content: center; padding: 10px; }
+  canvas { background: #000; max-width: 100%; height: auto; image-rendering: pixelated;
+           outline: none; box-shadow: 0 0 0 1px #262c33; }
+  .muted { color: #8b95a1; }
+</style>
+</head>
+<body>
+<header>
+  <strong>iDRAC console</strong>
+  <span id="status" class="warn">connecting...</span>
+  <span class="muted">res <span id="res">-</span></span>
+  <span class="muted" id="power">host power: ?</span>
+  <span class="sp"></span>
+  <button id="grab">Grab keyboard</button>
+  <button id="cad" title="Ctrl+Alt+Del">Ctrl-Alt-Del</button>
+  <button id="refresh" title="Request a full frame">Refresh</button>
+  <select id="powerctl" title="Power (disabled unless the relay allows it)">
+    <option value="">Power...</option>
+    <option value="1">On</option>
+    <option value="5">Graceful shutdown</option>
+    <option value="2">Off (hard)</option>
+    <option value="3">Power cycle</option>
+    <option value="4">Reset</option>
+  </select>
+</header>
+<div id="wrap"><canvas id="screen" width="1024" height="768"></canvas></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Root-shell sshd: UsePAM no -> the restricted CLI (PAM session) is bypassed,
+# login lands in the account shell (/bin/sh = BusyBox on these boxes).
+Port 2222
+HostKey /flash/data0/etc/ssh/ssh_host_rsa_key
+UsePAM no
+PermitRootLogin yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
+AuthorizedKeysFile /etc/oob/authorized_keys_root
+StrictModes no
+UsePrivilegeSeparation no
+PidFile /var/run/sshd_root.pid
