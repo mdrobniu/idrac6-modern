@@ -13,6 +13,33 @@ for modern toolchains, and that problem (and its solution) is the heart of this 
 > contain any vendor firmware image. You supply your own `firmimg.d6` (downloaded
 > from the vendor) and the tools modify your copy locally.
 
+## USE AT YOUR OWN RISK
+
+This project modifies firmware on hardware never designed for it. **Flashing a
+modified image can permanently brick your BMC's out-of-band management**, and the
+only recovery is over the physical serial console. Nothing here is endorsed by,
+affiliated with, or supported by Dell or any vendor. All trademarks belong to their
+owners. **You use these tools entirely at your own risk** — the authors and
+contributors accept **no liability** for bricked hardware, data loss, security
+exposure, voided warranties, or any other consequence. Wire up serial recovery
+**before** you flash, test on a non-production unit first, and understand each step
+before running it.
+
+## Getting the firmware
+
+No vendor firmware is distributed here — download the official Dell image yourself
+and extract `firmimg.d6` from it:
+
+- **Dell iDRAC6 Monolithic Release 2.92** (the latest/final iDRAC6 firmware):
+  <https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=kpccc>
+- Direct package: <https://dl.dell.com/FOLDER05418891M/1/iDRAC6_2.92_A00_FW_IMG.exe>
+  (SHA-256 `14157891cf595f511d716162126c05afc5c8eeb07d096b60308696f901b42470`)
+- The `.exe` is a self-extracting archive; `7z x iDRAC6_2.92_A00_FW_IMG.exe` (or
+  `unzip`) yields `firmimg.d6`. Verify the hash before using it.
+
+Links are correct as of 2026 and may change; check Dell's support site for the
+current iDRAC6 download if they move.
+
 ## Why this is hard (and interesting)
 
 The BMC is an **ARM926EJ-S (ARMv5TEJ, no VFP)** running **Linux 2.6.23.1** compiled
